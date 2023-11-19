@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var inquirer_1 = require("inquirer");
-var answers = await inquirer_1.default.prompt([
+import inquirer from "inquirer";
+const answers = await inquirer.prompt([
     {
         type: "input",
         name: "UserID",
@@ -23,7 +21,7 @@ var answers = await inquirer_1.default.prompt([
         name: "transcations",
         choices: ["fast cash", "withdraw"],
         message: "kindly select your transaction",
-        when: function (answers) {
+        when(answers) {
             return answers.AccountType;
         },
     },
@@ -32,7 +30,7 @@ var answers = await inquirer_1.default.prompt([
         name: "withdrawmethod",
         choices: [1000, 2000, 5000, 20000, 10000],
         message: "kindly select your amount=",
-        when: function (answers) {
+        when(answers) {
             return answers.transcations === "withdraw";
         },
     }
