@@ -31,8 +31,29 @@ const answers = await inquirer.prompt([
         choices: [1000, 2000, 5000, 20000, 10000],
         message: "kindly select your amount=",
         when(answers) {
-            return answers.transcations === "withdraw";
+            return answers.transcations == "fast cash";
+        },
+    },
+    {
+        type: "number",
+        name: "amount",
+        message: "enter your amount=",
+        when(answers) {
+            return answers.transcations == "withdraw";
         },
     }
 ]);
+if (answers.UserID && answers.UserPIN) {
+    const balance = Math.floor(Math.random() * 10000);
+    console.log(balance);
+    const EnteredAmount = answers.amount;
+    if (balance >= EnteredAmount) {
+        const remaining = balance - EnteredAmount;
+        console.log("your remaining balance is ", remaining);
+    }
+    else {
+        console.log("your current balance is insufficient!");
+    }
+}
+;
 console.log(answers);

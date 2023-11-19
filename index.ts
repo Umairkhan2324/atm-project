@@ -5,6 +5,7 @@ interface ansType{
   accountType: string;
   transactionType: string;
   amount: number;
+  remainig: number;
 }
 
 const answers = await inquirer.prompt([
@@ -52,16 +53,17 @@ const answers = await inquirer.prompt([
     },
    }
 
-])
-console.log(answers);
+]);
+
 if (answers.UserID && answers.UserPIN){
   const balance= Math.floor(Math.random()*10000);
   console.log(balance)
   const EnteredAmount = answers.amount;
-  if(balance > EnteredAmount){
+  if(balance >= EnteredAmount){
     const remaining = balance - EnteredAmount;
-    console.log(`your remaining balance is ${remaining}`)
+    console.log("your remaining balance is ",remaining)
   }else {
     console.log("your current balance is insufficient!")
   }
-}
+};
+console.log(answers);
